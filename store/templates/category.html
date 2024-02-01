@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Categories</h1>
+    <div class="row">
+        {% for category in categories %}
+            <div class="col-md-3">
+                <div class="category">
+                    <p>ID: {{ category.idc }}</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="category">
+                    <p>Name: {{ category.namec }}</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="category">
+                    <p>Details: {{ category.detailsc }}</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="category">
+                    <img src="../category_images/ " alt="{{ category.namec }}">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
