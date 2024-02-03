@@ -16,7 +16,10 @@ from . import views
 urlpatterns = [
     
     path('product/', views.product_view, name='product'),
+      path('product/<int:productid>',views.productdetails,name="product.details"),
     path('category/', views.category_view, name='category'),
+     path('category/<int:categoryidc>',views.categorydetails,name="category.details"),
+     
     path('about/', views.about_view, name='about'),
 ]
 

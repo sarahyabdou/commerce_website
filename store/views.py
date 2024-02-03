@@ -1,9 +1,8 @@
 
 from django.shortcuts import render
+from django.http import  HttpResponse
 
-def product_view(request):
-    # Fetch product data from your desired source and organize it as a list
-    products = [
+products = [
         {'id': 1, 'name': 'Product 1', 'details': 'Product 1 details'},
         {'id': 2, 'name': 'Product 2', 'details': 'Product 2 details'},
         {'id': 3, 'name': 'Product 3', 'details': 'Product 3 details'},
@@ -14,23 +13,51 @@ def product_view(request):
         {'id': 8, 'name': 'Product 8', 'details': 'Product 8 details'},
         {'id': 9, 'name': 'Product 9', 'details': 'Product 9 details'},
     ]
+def product_view(request):
+    # Fetch product data from your desired source and organize it as a list
+
     return render(request, 'product.html', {'products': products})
 
-
+categories = [
+        {'idc': 1, 'namec': 'mask', 'detailsc': 'category 1 details','path': 'pro1.jpg'},
+        {'idc': 2, 'namec': 'osea', 'detailsc': 'category 2 details','path': 'pro2.jpg'},
+       
+         {'idc': 3, 'namec': 'loreal', 'detailsc': 'category 3 details','path': 'pro3.jpg'},
+        {'idc': 4, 'namec': 'category 4', 'detailsc': 'category 4 details','path': 'pro10.jpg'},
+        {'idc': 5, 'namec': 'sheglam blush', 'detailsc': 'category 5 details','path': 'pro5.jpg'},
+          {'idc': 6, 'namec': 'ice roller', 'detailsc': 'category 6 details','path': 'pro6.jpg'},
+        {'idc': 7, 'namec': 'oil', 'detailsc': 'category 7 details','path': 'pro7.jpg'},
+        {'idc': 8, 'namec': 'tanasha', 'detailsc': 'category 8 details','path': 'pro8.jpg'},
+        {'idc': 9, 'namec': 'mac blusher', 'detailsc': 'category 9 details','path': 'pro9.jpg'},
+    ]
 def category_view(request):
    
-    categories = [
-        {'idc': 1, 'namec': 'category 1', 'detailsc': 'category 1 details','image': 'category1.jpg'},
-        {'idc': 2, 'namec': 'category 2', 'detailsc': 'category 2 details','image': 'category2.jpg'},
-       
-         {'idc': 3, 'namec': 'category 3', 'detailsc': 'category 3 details','image': 'category3.jpg'},
-        {'idc': 3, 'namec': 'category 4', 'detailsc': 'category 4 details','image': 'category4.jpg'},
-        {'idc': 5, 'namec': 'category 5', 'detailsc': 'category 5 details','image': 'category5.jpg'},
-          {'idc': 6, 'namec': 'category 6', 'detailsc': 'category 6 details','image': 'category6.jpg'},
-        {'idc': 7, 'namec': 'category 7', 'detailsc': 'category 7 details','image': 'category7.jpg'},
-        {'idc': 8, 'namec': 'category 8', 'detailsc': 'category 8 details','image': 'category8.jpg'},
-        {'idc': 9, 'namec': 'category 9', 'detailsc': 'category 9 details','image': 'category9.jpg'},
-    ]
+    
+  
     return render(request, 'category.html', {'categories': categories})
+
+
 def about_view(request):
     return render(request, 'about.html')
+
+def categorydetails(request,categoryidc):
+   
+    category=filter(lambda c:c['idc']==categoryidc,categories )
+    
+    category=list(category)
+    if category:
+        return HttpResponse(category)
+def productdetails(request,productid):
+   
+    product=filter(lambda p:p['id']==productid,products )
+    
+    product=list(product)
+    if product:
+        return HttpResponse(product)
+    
+
+
+
+    
+
+
